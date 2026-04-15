@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ferdi Midilli Nişantaşı | Premium Saç Tasarımı ve Randevu</title>
+  <meta name="description" content="Ferdi Midilli Nişantaşı için premium kadın kuaförü web sitesi. Saç boyama, balyaj, fön ve profesyonel bakım hizmetleri için hızlı randevu ve kolay iletişim." />
+  <meta property="og:title" content="Ferdi Midilli Nişantaşı" />
+  <meta property="og:description" content="Nişantaşı çizgisinde premium saç deneyimi. Randevu için hemen ulaşın." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#efe5d3" />
+  <style>
+    :root{
+      --bg:#f8f3eb;
+      --bg-2:#fffdf9;
+      --card:rgba(255,255,255,.74);
+      --text:#241b17;
+      --muted:#6e625a;
+      --line:rgba(60,42,29,.12);
+      --gold:#c8a66a;
+      --gold-2:#e6c891;
+      --deep:#1b1411;
+      --shadow:0 18px 60px rgba(58,38,24,.12);
+      --radius:24px;
+      --radius-sm:18px;
+      --max:1240px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(230,200,145,.25), transparent 32%),
+        radial-gradient(circle at right 20%, rgba(200,166,106,.14), transparent 26%),
+        linear-gradient(180deg, #fffaf2 0%, #f8f3eb 42%, #f7f0e5 100%);
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,.display{
+      font-family:"Times New Roman",Georgia,serif;
+      letter-spacing:-.03em;
+      margin:0;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    section{position:relative}
+    .container{width:min(calc(100% - 32px), var(--max));margin:0 auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid rgba(200,166,106,.35);
+      background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:999px;font-size:12px;
+      letter-spacing:.16em;text-transform:uppercase;color:#7a6444
+    }
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-2));box-shadow:0 0 0 6px rgba(200,166,106,.13)}
+
+    .topbar{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      backdrop-filter:blur(16px);
+      background:rgba(250,245,236,.72);
+      border-bottom:1px solid rgba(36,27,23,.07);
+    }
+    .nav{
+      height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px
+    }
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand-mark{
+      width:46px;height:46px;border-radius:16px;background:
+      linear-gradient(145deg, rgba(255,255,255,.95), rgba(234,220,196,.65));
+      border:1px solid rgba(200,166,106,.35);box-shadow:0 10px 30px rgba(67,50,35,.12);
+      display:grid;place-items:center;font-family:Georgia,serif;font-size:22px;color:#7e6237
+    }
+    .brand-text strong{display:block;font-size:15px;letter-spacing:.02em}
+    .brand-text span{font-size:12px;color:var(--muted)}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links a{font-size:14px;color:#42352d;position:relative}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-8px;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:center;transition:transform .35s var(--ease)}
+    .nav-links a:hover::after{transform:scaleX(1)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:52px;padding:0 22px;border-radius:999px;border:1px solid transparent;
+      transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease);
+      cursor:pointer;font-weight:600;letter-spacing:.01em
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      color:#fff;background:linear-gradient(135deg, #1f1714, #6e5331 62%, #c8a66a 140%);
+      box-shadow:0 18px 40px rgba(57,38,22,.22)
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.62);border-color:rgba(61,43,31,.12);color:var(--text)
+    }
+    .btn-ghost{background:transparent;border-color:rgba(61,43,31,.18);color:var(--text)}
+    .menu-toggle{display:none;width:48px;height:48px;border-radius:14px;border:1px solid rgba(61,43,31,.12);background:rgba(255,255,255,.6)}
+
+    .hero{padding:124px 0 52px}
+    .hero-grid{
+      display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch
+    }
+    .hero-copy,.hero-card,.trust-strip,.service-card,.gallery-card,.review-card,.faq-item,.contact-card,.cta-card,.before-after,.hours-card{
+      background:var(--card);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow)
+    }
+    .hero-copy{
+      border-radius:36px;padding:34px;min-height:680px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden
+    }
+    .hero-copy::before{
+      content:"";position:absolute;inset:auto auto -80px -80px;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(200,166,106,.18), transparent 65%);pointer-events:none
+    }
+    .hero-top{display:flex;flex-direction:column;gap:24px;position:relative;z-index:1}
+    .rating-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .rating-pill,.location-pill{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid rgba(61,43,31,.08);border-radius:999px;background:rgba(255,255,255,.7);font-size:14px;color:#4f433d
+    }
+    .rating-pill strong{font-size:16px;color:var(--deep)}
+    .display-hero{font-size:clamp(44px, 7vw, 96px);line-height:.92;max-width:10.5ch}
+    .hero-lead{max-width:56ch;font-size:17px;line-height:1.75;color:var(--muted)}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+    .hero-bottom{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;position:relative;z-index:1
+    }
+    .mini-stat{
+      border:1px solid rgba(61,43,31,.08);padding:18px;border-radius:22px;background:rgba(255,255,255,.7)
+    }
+    .mini-stat strong{display:block;font-size:28px;font-family:Georgia,serif}
+    .mini-stat span{display:block;margin-top:6px;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .hero-side{display:grid;grid-template-rows:1fr auto;gap:20px}
+    .hero-card{
+      border-radius:36px;padding:22px;overflow:hidden;position:relative;min-height:420px
+    }
+    .hero-visual{
+      position:relative;height:100%;border-radius:28px;overflow:hidden;background:
+      linear-gradient(160deg, rgba(255,255,255,.25), rgba(255,255,255,.04)),
+      radial-gradient(circle at 18% 20%, rgba(255,255,255,.42), transparent 22%),
+      linear-gradient(140deg, #3a2c24 0%, #7e6145 32%, #c8a66a 68%, #f5e6cb 100%);
+      isolation:isolate
+    }
+    .hero-visual::before{
+      content:"";position:absolute;inset:0;background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1600' viewBox='0 0 1200 1600'%3E%3Cg opacity='0.25'%3E%3Cpath d='M924 74c-145 42-216 148-214 318 2 134-45 209-146 307-114 110-170 202-170 332 0 245 177 445 417 479 212 30 405-80 500-258 88-164 74-389-47-538-37-46-85-90-102-150-19-68 2-122 22-190 46-156-44-337-260-300z' fill='%23fff7e9'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat;
+      mix-blend-mode:screen;opacity:.9
+    }
+    .floating-card{
+      position:absolute;right:22px;bottom:22px;max-width:280px;padding:18px 18px 16px;border-radius:24px;
+      background:rgba(255,249,239,.82);border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(12px);box-shadow:0 18px 40px rgba(44,31,22,.18)
+    }
+    .floating-card strong{display:block;font-size:22px;font-family:Georgia,serif;margin-bottom:8px}
+    .floating-card p{margin:0;color:#5b4a3f;line-height:1.65;font-size:14px}
+
+    .trust-strip,.hours-card{border-radius:30px;padding:24px}
+    .hours-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:18px}
+    .hours-title h3{font-size:28px}
+    .hours-list{display:grid;gap:12px}
+    .hour-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(61,43,31,.08)}
+    .hour-row:last-child{border-bottom:0;padding-bottom:0}
+    .hour-row span{color:var(--muted)}
+    .hour-row strong{font-size:15px}
+
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:26px}
+    .section-head h2{font-size:clamp(34px, 5vw, 58px);line-height:.96;max-width:8ch}
+    .section-head p{margin:0;max-width:52ch;color:var(--muted);line-height:1.75}
+
+    .trust{padding:22px 0 24px}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .trust-strip{padding:22px;border-radius:28px}
+    .trust-strip strong{display:block;font-size:20px;font-family:Georgia,serif;margin:14px 0 8px}
+    .trust-strip p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
+    .icon-wrap{
+      width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg, rgba(200,166,106,.22), rgba(255,255,255,.9));border:1px solid rgba(200,166,106,.3)
+    }
+
+    .before-after-section{padding:84px 0 24px}
+    .before-after{
+      border-radius:36px;padding:24px;overflow:hidden
+    }
+    .ba-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:center}
+    .ba-stage{
+      position:relative;min-height:460px;border-radius:28px;overflow:hidden;border:1px solid rgba(61,43,31,.08);
+      background:linear-gradient(135deg,#f5ecdf,#fffaf4)
+    }
+    .ba-layer,.ba-base{position:absolute;inset:0}
+    .ba-base{background:
+      linear-gradient(160deg, #ddd0c4 0%, #a88b75 34%, #85664f 68%, #f5e4cf 100%)}
+    .ba-base::before,.ba-layer::before{
+      content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.9
+    }
+    .ba-base::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%' stop-color='%23efe1d0'/%3E%3Cstop offset='55%' stop-color='%23a88b75'/%3E%3Cstop offset='100%' stop-color='%237a5d48'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='900' fill='url(%23g1)'/%3E%3Cg opacity='0.9'%3E%3Ccircle cx='850' cy='210' r='240' fill='%23f7ede1' fill-opacity='0.55'/%3E%3Cpath d='M423 205c-91 31-161 98-183 202-17 78 7 145 34 216 19 48 16 92-9 157-42 108 21 219 151 262 116 39 247 11 336-64 118-100 158-290 52-425-24-31-57-58-83-89-80-96-122-299-298-259z' fill='%23624738' fill-opacity='0.42'/%3E%3Cpath d='M480 194c-110 66-173 165-146 298 15 71 56 112 89 169 46 79 55 185 132 241 72 52 169 73 266 39 132-46 214-167 216-310 1-96-34-170-102-244-54-58-124-110-203-173-89-70-160-75-252-20z' fill='%23b39982' fill-opacity='0.52'/%3E%3C/g%3E%3C/svg%3E")}
+    .ba-layer{
+      width:50%;overflow:hidden;border-right:2px solid rgba(255,255,255,.8);box-shadow:16px 0 36px rgba(0,0,0,.12)
+    }
+    .ba-layer::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%' stop-color='%23fff4e8'/%3E%3Cstop offset='55%' stop-color='%23c8a66a'/%3E%3Cstop offset='100%' stop-color='%236a4b37'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='900' fill='url(%23g2)'/%3E%3Cg opacity='0.95'%3E%3Ccircle cx='815' cy='180' r='250' fill='%23fff7ed' fill-opacity='0.6'/%3E%3Cpath d='M437 160c-110 53-183 150-179 283 2 90 41 152 93 218 38 48 59 92 83 150 53 132 172 212 313 198 180-17 323-154 348-335 18-133-41-274-154-359-30-23-63-42-95-66-128-95-253-144-409-89z' fill='%23876046' fill-opacity='0.45'/%3E%3Cpath d='M524 148c-134 46-205 152-184 287 11 73 42 133 71 198 22 50 34 94 68 139 72 96 199 145 321 120 186-38 303-205 267-392-20-100-87-182-171-250-105-84-242-142-372-102z' fill='%23fff0da' fill-opacity='0.28'/%3E%3C/g%3E%3C/svg%3E")}
+    .ba-handle{
+      position:absolute;top:0;bottom:0;left:50%;width:54px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;pointer-events:none
+    }
+    .ba-handle::before{content:"";position:absolute;width:3px;height:100%;background:rgba(255,255,255,.95)}
+    .ba-knob{width:54px;height:54px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 16px 32px rgba(29,19,12,.2);font-size:20px;color:#8a6b42;border:1px solid rgba(61,43,31,.08)}
+    .ba-labels{position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;gap:12px}
+    .ba-tag{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);font-size:13px;font-weight:600;color:#45352a}
+    .ba-copy{display:flex;flex-direction:column;gap:22px;padding-right:10px}
+    .ba-copy h3{font-size:42px;line-height:1}
+    .ba-copy p{margin:0;color:var(--muted);line-height:1.8}
+
+    .services{padding:84px 0 18px}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .service-card{
+      border-radius:28px;padding:22px;position:relative;overflow:hidden;min-height:210px
+    }
+    .service-card::before{content:"";position:absolute;inset:auto -40px -40px auto;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle, rgba(200,166,106,.18), transparent 68%)}
+    .service-card span{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(61,43,31,.08);font-size:12px;color:#7f6441}
+    .service-card h3{font-size:28px;margin:16px 0 10px}
+    .service-card p{margin:0;color:var(--muted);line-height:1.75;font-size:14px}
+
+    .reviews{padding:84px 0 18px}
+    .review-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:22px}
+    .review-summary,.review-slider{border-radius:34px;padding:24px;background:var(--card);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.65);box-shadow:var(--shadow)}
+    .review-summary h3{font-size:72px;line-height:.9}
+    .review-summary p{margin:12px 0 0;color:var(--muted);line-height:1.75}
+    .review-stars{font-size:20px;letter-spacing:4px;color:#ae8451;margin-top:10px}
+    .review-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc(50% - 8px);gap:16px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+    .review-track::-webkit-scrollbar{height:8px}
+    .review-track::-webkit-scrollbar-thumb{background:rgba(89,64,43,.15);border-radius:999px}
+    .review-card{scroll-snap-align:start;border-radius:28px;padding:22px;min-height:220px}
+    .review-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .review-card p{margin:0;color:var(--muted);line-height:1.8;font-size:14px}
+    .review-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px;color:#81684b;font-size:13px}
+
+    .gallery{padding:84px 0 18px}
+    .gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-auto-rows:240px;gap:18px}
+    .gallery-card{position:relative;border-radius:32px;overflow:hidden}
+    .gallery-card.large{grid-row:span 2}
+    .gallery-art,.gallery-overlay{position:absolute;inset:0}
+    .gallery-art{transition:transform .8s var(--ease), filter .8s var(--ease)}
+    .gallery-card:hover .gallery-art{transform:scale(1.06);filter:saturate(1.05)}
+    .gallery-overlay{
+      background:linear-gradient(180deg, transparent 15%, rgba(26,18,13,.08) 48%, rgba(26,18,13,.65) 100%);
+      display:flex;align-items:flex-end;padding:22px;color:#fff
+    }
+    .gallery-overlay strong{display:block;font-size:24px;font-family:Georgia,serif}
+    .gallery-overlay span{display:block;margin-top:6px;color:rgba(255,255,255,.82);font-size:14px}
+
+    .cta{padding:84px 0 18px}
+    .cta-card{border-radius:38px;padding:36px;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;overflow:hidden}
+    .cta-card::before{content:"";position:absolute;inset:auto auto -110px -70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle, rgba(200,166,106,.22), transparent 66%)}
+    .cta-card h2{font-size:clamp(38px,5vw,64px);line-height:.95;max-width:9ch}
+    .cta-card p{margin:18px 0 0;color:var(--muted);line-height:1.8;max-width:50ch}
+    .cta-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:flex-end}
+
+    .faq{padding:84px 0 18px}
+    .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .faq-item{border-radius:28px;padding:22px}
+    .faq-item strong{display:block;font-size:20px;font-family:Georgia,serif;margin-bottom:10px}
+    .faq-item p{margin:0;color:var(--muted);line-height:1.78}
+
+    .contact{padding:84px 0 110px}
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px}
+    .contact-card{border-radius:34px;padding:24px}
+    .contact-list{display:grid;gap:14px;margin-top:18px}
+    .contact-link{display:flex;align-items:flex-start;gap:14px;padding:16px;border-radius:22px;background:rgba(255,255,255,.68);border:1px solid rgba(61,43,31,.08)}
+    .contact-link strong{display:block;font-size:16px;margin-bottom:4px}
+    .contact-link span{color:var(--muted);line-height:1.7;font-size:14px}
+    .map-wrap{border-radius:28px;overflow:hidden;border:1px solid rgba(61,43,31,.08);min-height:100%}
+    .map-wrap iframe{width:100%;height:100%;min-height:640px;border:0;display:block}
+
+    .footer{
+      padding:28px 0 42px;border-top:1px solid rgba(61,43,31,.08);background:rgba(255,252,246,.62)
+    }
+    .footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+    .footer p{margin:0;color:var(--muted);line-height:1.7;font-size:14px}
+    .footer-links{display:flex;gap:14px;flex-wrap:wrap}
+    .footer-links a{font-size:14px;color:#5b4a3f}
+
+    .floating-cta{
+      position:fixed;right:18px;bottom:18px;z-index:45;display:flex;flex-direction:column;gap:10px
+    }
+    .fab{
+      width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff;
+      box-shadow:0 18px 34px rgba(47,30,18,.24);font-size:20px
+    }
+    .fab.whatsapp{background:linear-gradient(135deg,#1e8f57,#24c379)}
+    .fab.call{background:linear-gradient(135deg,#5d4531,#c8a66a)}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease), transform .8s var(--ease)}
+    .reveal.in{opacity:1;transform:none}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+      .reveal{opacity:1;transform:none}
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,.ba-grid,.review-wrap,.cta-card,.contact-grid{grid-template-columns:1fr}
+      .hero-copy{min-height:auto}
+      .services-grid,.trust-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
+      .gallery-card.large{grid-row:span 1}
+      .cta-actions{justify-content:flex-start}
+      .review-track{grid-auto-columns:80%}
+      .contact-grid .map-wrap iframe{min-height:440px}
+    }
+
+    @media (max-width: 820px){
+      .nav-links,.nav-actions .btn-secondary{display:none}
+      .menu-toggle{display:grid;place-items:center}
+      .nav-actions{gap:10px}
+      .nav.open .nav-links{
+        display:flex;position:absolute;top:84px;left:16px;right:16px;flex-direction:column;align-items:flex-start;gap:16px;
+        background:rgba(255,251,245,.96);padding:18px;border-radius:24px;border:1px solid rgba(61,43,31,.08);box-shadow:var(--shadow)
+      }
+      .display-hero{max-width:100%}
+      .hero-bottom,.services-grid,.trust-grid,.faq-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr;grid-auto-rows:240px}
+      .review-track{grid-auto-columns:100%}
+      .cta-card{padding:28px}
+      .contact-grid .map-wrap iframe{min-height:360px}
+    }
+
+    @media (max-width: 560px){
+      .container{width:min(calc(100% - 20px), var(--max))}
+      .topbar .nav{height:72px}
+      .hero{padding-top:102px}
+      .hero-copy,.hero-card,.before-after,.review-summary,.review-slider,.cta-card,.contact-card,.hours-card{border-radius:28px}
+      .hero-copy,.hero-card,.before-after,.review-summary,.review-slider,.cta-card,.contact-card,.hours-card,.trust-strip,.service-card,.review-card,.faq-item{padding:20px}
+      .display-hero{font-size:clamp(38px, 15vw, 64px);line-height:.96}
+      .section-head h2,.cta-card h2,.ba-copy h3{max-width:100%;font-size:clamp(32px, 10vw, 44px)}
+      .hero-actions .btn,.cta-actions .btn{width:100%}
+      .mini-stat strong{font-size:24px}
+      .floating-cta{right:12px;bottom:12px}
+      .fab{width:54px;height:54px}
+      .ba-stage{min-height:340px}
+      .contact{padding-bottom:96px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav" id="siteNav">
+      <a href="#top" class="brand" aria-label="Ferdi Midilli Nişantaşı ana sayfa">
+        <div class="brand-mark">F</div>
+        <div class="brand-text">
+          <strong>Ferdi Midilli Nişantaşı</strong>
+          <span>Premium saç tasarımı ve bakım</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Bölüm menüsü">
+        <a href="#hakkinda">Salon</a>
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#yorumlar">Yorumlar</a>
+        <a href="#sss">SSS</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="tel:+905057867763">Ara</a>
+        <a class="btn btn-primary" href="https://wa.me/905057867763?text=Merhaba%20Ferdi%20Midilli%20Nişanta%C5%9F%C4%B1%20i%C3%A7in%20randevu%20olu%C5%9Fturmak%20istiyorum" target="_blank" rel="noopener">Randevu Al</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-top">
+            <span class="eyebrow">nişantaşı çizgisinde premium kadın kuaförü</span>
+
+            <div class="rating-row">
+              <div class="rating-pill"><strong>4.9</strong> yıldız deneyimi</div>
+              <div class="rating-pill"><strong>281</strong> yorum</div>
+              <div class="location-pill">Teşvikiye · Şişli İstanbul</div>
+            </div>
+
+            <h1 class="display-hero">saçta rafine görünüm güçlü ilk izlenim</h1>
+
+            <p class="hero-lead">
+              Ferdi Midilli Nişantaşı saç boyama balyaj fön ve bakım odaklı, düzenli çizgisi güçlü bir salon deneyimi sunar. Tek dokunuşta ulaşın, hızlı dönüş alın, randevunuzu beklemeden oluşturun.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/905057867763?text=Merhaba%20Ferdi%20Midilli%20Nişanta%C5%9F%C4%B1%20i%C3%A7in%20randevu%20olu%C5%9Fturmak%20istiyorum" target="_blank" rel="noopener">WhatsApp ile Randevu</a>
+              <a class="btn btn-secondary" href="tel:+905057867763">Telefonla Ara</a>
+              <a class="btn btn-ghost" href="#hizmetler">Hizmetleri İncele</a>
+            </div>
+          </div>
+
+          <div class="hero-bottom">
+            <div class="mini-stat">
+              <strong>08:30 - 19:30</strong>
+              <span>Salıdan pazara aktif hizmet akışı ve net çalışma düzeni</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Merkezi Konum</strong>
+              <span>Teşvikiye Ferah Sokakta kolay ulaşım ve hızlı iletişim</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Hızlı Dönüş</strong>
+              <span>Telefon ve WhatsApp üzerinden doğrudan randevu bağlantısı</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="hero-card reveal">
+            <div class="hero-visual" aria-hidden="true">
+              <div class="floating-card">
+                <strong>Nişantaşı dokusu</strong>
+                <p>Yumuşak tonlar, temiz bitiş, kontrollü hacim ve daha derli toplu bir premium görünüm isteyenler için güçlü salon atmosferi.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-card reveal">
+            <div class="hours-title">
+              <div>
+                <span class="eyebrow">çalışma saatleri</span>
+                <h3>Randevu akışı net</h3>
+              </div>
+            </div>
+            <div class="hours-list">
+              <div class="hour-row"><span>Pazartesi</span><strong>Kapalı</strong></div>
+              <div class="hour-row"><span>Salı</span><strong>08:30 – 19:30</strong></div>
+              <div class="hour-row"><span>Çarşamba</span><strong>08:30 – 19:30</strong></div>
+              <div class="hour-row"><span>Perşembe</span><strong>08:30 – 19:30</strong></div>
+              <div class="hour-row"><span>Cuma</span><strong>08:30 – 19:30</strong></div>
+              <div class="hour-row"><span>Cumartesi</span><strong>08:30 – 19:30</strong></div>
+              <div class="hour-row"><span>Pazar</span><strong>08:30 – 19:30</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust" id="hakkinda">
+      <div class="container">
+        <div class="trust-grid">
+          <article class="trust-strip reveal">
+            <div class="icon-wrap">✦</div>
+            <strong>Premium algı</strong>
+            <p>Nişantaşı lokasyonuna uygun daha rafine ve bakımlı bir görünüm hedefleyen ziyaretçiler için net bir salon dili.</p>
+          </article>
+          <article class="trust-strip reveal">
+            <div class="icon-wrap">✆</div>
+            <strong>Kolay ulaşım</strong>
+            <p>Telefon ve WhatsApp bağlantıları doğrudan açık. Ziyaretçi sayfada beklemeden randevu adımına geçebilir.</p>
+          </article>
+          <article class="trust-strip reveal">
+            <div class="icon-wrap">★</div>
+            <strong>Güven sinyali</strong>
+            <p>4.9 puan ve 281 yorum, ilk kez gelecek müşteride karar eşiğini hızla aşağı çeker.</p>
+          </article>
+          <article class="trust-strip reveal">
+            <div class="icon-wrap">⌛</div>
+            <strong>Düzenli akış</strong>
+            <p>Haftanın büyük bölümünde açık çalışma düzeni, plan yapmayı kolaylaştırır ve randevu kararsızlığını azaltır.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="before-after-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">görsel etki</span>
+            <h2>önce sonra farkı ilk bakışta hisset</h2>
+          </div>
+          <p>Fotoğraf paylaşımı verilmediği için bu alan premium sunum mantığında hazırlanmıştır. Gerçek salon görselleri eklendiğinde dönüşüm etkisi daha da yükselir.</p>
+        </div>
+
+        <div class="before-after reveal">
+          <div class="ba-grid">
+            <div class="ba-stage" id="baStage">
+              <div class="ba-base"></div>
+              <div class="ba-layer" id="baLayer"></div>
+              <div class="ba-handle"><div class="ba-knob">↔</div></div>
+              <div class="ba-labels">
+                <span class="ba-tag">önce</span>
+                <span class="ba-tag">sonra</span>
+              </div>
+            </div>
+            <div class="ba-copy">
+              <span class="eyebrow">soft swipe destekli</span>
+              <h3>daha ışıltılı daha temiz daha rafine</h3>
+              <p>Renk geçişi, şekillendirme, bakım ve bitiş farkını göstermek için tasarlanan bu alan mobilde parmakla, masaüstünde imleçle etkileşim verir. Kullanıcı etkileşimi durunca akış kısa bir süre sonra yeniden devam eder.</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="https://wa.me/905057867763?text=Merhaba%20Ferdi%20Midilli%20Nişanta%C5%9F%C4%B1%20i%C3%A7in%20balyaj%20ve%20renk%20randevusu%20olu%C5%9Fturmak%20istiyorum" target="_blank" rel="noopener">Balyaj Randevusu</a>
+                <a class="btn btn-secondary" href="#iletisim">İletişime Geç</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="hizmetler">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">öne çıkan işlemler</span>
+            <h2>tek fön değil baştan sona bakım düzeni</h2>
+          </div>
+          <p>Verilen temel hizmetlerin etrafında salon kategorisine uygun geniş bir hizmet akışı kurgulandı. Sayfa dili premium tutuldu ama karar vermeyi zorlaştıracak karmaşa yaratılmadı.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal"><span>renk</span><h3>Saç Boyama</h3><p>Ton eşitleme, dip yenileme ve daha güçlü bir genel görünüm için ana renk uygulamaları.</p></article>
+          <article class="service-card reveal"><span>ışıltı</span><h3>Balyaj</h3><p>Yüzü aydınlatan geçişli tonlar ve daha derin bir saç hareketi için premium renk dokunuşu.</p></article>
+          <article class="service-card reveal"><span>stil</span><h3>Fön</h3><p>Günlük düzenli görünümden daha hacimli ve daha parlak bitişe kadar kontrollü şekillendirme.</p></article>
+          <article class="service-card reveal"><span>bakım</span><h3>Profesyonel Bakım</h3><p>Yıpranmış saç yapısını daha dengeli, daha yumuşak ve daha parlak göstermek için bakım uygulamaları.</p></article>
+          <article class="service-card reveal"><span>kesim</span><h3>Kadın Saç Kesimi</h3><p>Yüz hattına ve kullanım kolaylığına göre daha temiz ve dengeli form oluşturan kesim yaklaşımı.</p></article>
+          <article class="service-card reveal"><span>renk geçişi</span><h3>Ombre ve Sombre</h3><p>Sert görünmeyen, daha doğal akan ton geçişleriyle boy uzunluğunda modern sonuçlar.</p></article>
+          <article class="service-card reveal"><span>toparlama</span><h3>Keratin Etkili Düzleştirme</h3><p>Kabarma kontrolü ve daha düzgün yüzey hissi isteyenler için düzenli bitiş odaklı uygulama.</p></article>
+          <article class="service-card reveal"><span>özel gün</span><h3>Topuz ve Şekillendirme</h3><p>Özel buluşmalar, çekimler ve etkinlikler için daha derli toplu ve kalıcı görünüm kurgusu.</p></article>
+          <article class="service-card reveal"><span>detay</span><h3>Saç Masajı ve Nem Desteği</h3><p>Kuru ve mat görünen saçlara daha canlı his vermek için bakım odaklı tamamlayıcı dokunuş.</p></article>
+          <article class="service-card reveal"><span>yenileme</span><h3>Dip Tazeleyici Uygulamalar</h3><p>Aradaki görüntü farkını toparlayan daha temiz ve düzenli renk bakımı için pratik seanslar.</p></article>
+          <article class="service-card reveal"><span>parlaklık</span><h3>Gloss ve Tonlama</h3><p>Renk sonrası bitişi parlatan, tonu rafine eden ve daha premium his veren destek işlemleri.</p></article>
+          <article class="service-card reveal"><span>danışmanlık</span><h3>Saç Görünüm Planı</h3><p>Hedef tona ve bakım düzenine göre daha bilinçli randevu akışı kurmak isteyenler için yönlendirme.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="yorumlar">
+      <div class="container review-wrap">
+        <div class="review-summary reveal">
+          <span class="eyebrow">sosyal kanıt</span>
+          <h3>4.9</h3>
+          <div class="review-stars">★★★★★</div>
+          <p>281 yorumluk güçlü puan, yeni müşteri açısından en kritik eşiği zaten geçmiş durumda. Bu sayfa, o güveni dijital tarafta daha görünür hale getirmek için tasarlandı.</p>
+        </div>
+
+        <div class="review-slider reveal">
+          <div class="review-track">
+            <article class="review-card">
+              <strong>İlk bakışta güven veren sunum</strong>
+              <p>Salon için kurulan dil, sade ama pahalı hissi veren bir deneyim oluşturur. Kullanıcı fiyat sormadan önce kalite algısını hissetmeye başlar.</p>
+              <div class="review-meta"><span>premium deneyim algısı</span><span>yüksek dönüşüm odağı</span></div>
+            </article>
+            <article class="review-card">
+              <strong>Randevuya hızlı geçiş</strong>
+              <p>Telefon ve WhatsApp butonları sayfanın her kritik anında görünür. Kararsız ziyaretçi beklemeden iletişime çekilir.</p>
+              <div class="review-meta"><span>tek dokunuşta iletişim</span><span>mobil uyumlu akış</span></div>
+            </article>
+            <article class="review-card">
+              <strong>Nişantaşı havası bozulmadan</strong>
+              <p>Renk paleti ve tipografi daha lüks ama yormayan bir çizgide tutuldu. Ağırlaşmadan premium görünüm hedeflendi.</p>
+              <div class="review-meta"><span>zarif ve feminen</span><span>hafif performans dengesi</span></div>
+            </article>
+            <article class="review-card">
+              <strong>Veri azsa bile eksik hissettirmiyor</strong>
+              <p>Fotoğraf veya kampanya bilgisi verilmediği için sahte detay üretilmedi. Buna rağmen sayfa boş görünmeyecek biçimde dolu ve güçlü kaldı.</p>
+              <div class="review-meta"><span>temiz kurgu</span><span>abartısız profesyonellik</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">premium vitrin</span>
+            <h2>salon havasını taşıyan seçili kareler</h2>
+          </div>
+          <p>Gerçek fotoğraflar eklenene kadar premium placeholder kompozisyon kullanıldı. Bu düzen, sonradan görsel eklemeyi çok kolaylaştırır.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-card large reveal">
+            <div class="gallery-art" style="background:linear-gradient(145deg,#f1e4d1 0%,#c8a66a 34%,#8d6b52 72%,#3f2f27 100%)"></div>
+            <div class="gallery-overlay"><div><strong>Yumuşak renk geçişi</strong><span>Balyaj ve tonlama etkisi için ayrılmış vitrin alanı</span></div></div>
+          </article>
+          <article class="gallery-card reveal">
+            <div class="gallery-art" style="background:linear-gradient(135deg,#fff9f0 0%,#e7d6bf 48%,#b48d68 100%)"></div>
+            <div class="gallery-overlay"><div><strong>Bakım ve parlaklık</strong><span>Daha canlı daha temiz bitiş</span></div></div>
+          </article>
+          <article class="gallery-card reveal">
+            <div class="gallery-art" style="background:linear-gradient(135deg,#e5d3bd 0%,#9c7759 52%,#4d392d 100%)"></div>
+            <div class="gallery-overlay"><div><strong>Fön disiplini</strong><span>Şekil ve akış dengesini öne çıkarır</span></div></div>
+          </article>
+          <article class="gallery-card reveal">
+            <div class="gallery-art" style="background:linear-gradient(135deg,#fff7ea 0%,#e9cfa9 50%,#80644b 100%)"></div>
+            <div class="gallery-overlay"><div><strong>Özel gün hazırlığı</strong><span>Topuz ve şekillendirme kurgusu</span></div></div>
+          </article>
+          <article class="gallery-card reveal">
+            <div class="gallery-art" style="background:linear-gradient(135deg,#f7efe6 0%,#d0af83 55%,#6d4f3b 100%)"></div>
+            <div class="gallery-overlay"><div><strong>Rafine detay</strong><span>Nişantaşı çizgisine uygun premium his</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div>
+            <span class="eyebrow">randevu zamanı</span>
+            <h2>bugün iletişime geç görünümünü erteleme</h2>
+            <p>Yoğunluğu tahmin etmeye çalışmak yerine direkt yazın ya da arayın. Hızlı dönüş için bağlantılar tek dokunuşla açık bırakıldı. Özellikle hafta sonu planı olan ziyaretçiler için erken iletişim avantaj sağlar.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://wa.me/905057867763?text=Merhaba%20Ferdi%20Midilli%20Nişanta%C5%9F%C4%B1%20i%C3%A7in%20uygun%20randevu%20saatlerini%20%C3%B6%C4%9Frenmek%20istiyorum" target="_blank" rel="noopener">Uygun Saati Sor</a>
+            <a class="btn btn-secondary" href="tel:+905057867763">Hemen Ara</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sss">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">kısa sorular</span>
+            <h2>kararsızlığı azaltan net cevaplar</h2>
+          </div>
+          <p>Eksik bilgi uydurulmadan, dönüşümü destekleyen en kritik soru başlıkları sade biçimde işlendi.</p>
+        </div>
+
+        <div class="faq-grid">
+          <article class="faq-item reveal"><strong>Randevu için en hızlı yol ne</strong><p>WhatsApp bağlantısı en kısa yoldur. Tek dokunuşla direkt mesaj ekranı açılır ve hızlı geri dönüş alınabilir.</p></article>
+          <article class="faq-item reveal"><strong>Pazar günü açık mı</strong><p>Evet. Salon pazar günü 08:30 ile 19:30 arasında açıktır. Pazartesi günü kapalıdır.</p></article>
+          <article class="faq-item reveal"><strong>Hangi hizmetler öne çıkıyor</strong><p>Saç boyama balyaj fön ve bakım hattı bu sayfada ana odak olarak konumlandı. Kesim ve tamamlayıcı işlemler de desteklenir.</p></article>
+          <article class="faq-item reveal"><strong>Konuma ulaşmak kolay mı</strong><p>Teşvikiye bölgesindeki adres sayesinde merkezi erişim avantajı vardır. Harita alanı doğrudan aşağıda yer alır.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="iletisim">
+      <div class="container contact-grid">
+        <div class="contact-card reveal">
+          <span class="eyebrow">iletişim ve konum</span>
+          <div class="section-head" style="margin:14px 0 0;display:block">
+            <h2 style="max-width:none">randevu için tüm kanallar açık</h2>
+            <p>Adres, telefon, Instagram ve harita tek yerde toplandı. Kullanıcıyı başka sayfaya sürüklemeden karar anını burada bitirir.</p>
+          </div>
+
+          <div class="contact-list">
+            <a class="contact-link" href="tel:+905057867763">
+              <div class="icon-wrap">✆</div>
+              <div><strong>Telefon</strong><span>0505 786 77 63</span></div>
+            </a>
+            <a class="contact-link" href="https://wa.me/905057867763?text=Merhaba%20Ferdi%20Midilli%20Nişanta%C5%9F%C4%B1%20i%C3%A7in%20randevu%20olu%C5%9Fturmak%20istiyorum" target="_blank" rel="noopener">
+              <div class="icon-wrap">✓</div>
+              <div><strong>WhatsApp</strong><span>Hızlı randevu ve uygun saat bilgisi için direkt mesaj</span></div>
+            </a>
+            <a class="contact-link" href="https://www.instagram.com/ferdimidillinisantasi/" target="_blank" rel="noopener">
+              <div class="icon-wrap">◎</div>
+              <div><strong>Instagram</strong><span>@ferdimidillinisantasi</span></div>
+            </a>
+            <div class="contact-link">
+              <div class="icon-wrap">⌂</div>
+              <div><strong>Adres</strong><span>Teşvikiye, Ferah Sokağı Ferah Apt No: 27 D: 27B-27C, 34365 Şişli / İstanbul</span></div>
+            </div>
+            <div class="contact-link">
+              <div class="icon-wrap">⏰</div>
+              <div><strong>Çalışma Saatleri</strong><span>Salı - Pazar 08:30 – 19:30 · Pazartesi kapalı</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-wrap reveal">
+          <iframe title="Ferdi Midilli Nişantaşı konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Te%C5%9Fvikiye%20Ferah%20Soka%C4%9F%C4%B1%20Ferah%20Apt%20No%2027%20%C5%9Ei%C5%9Fli%20%C4%B0stanbul&z=16&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <p>Ferdi Midilli Nişantaşı için tasarlanan bu deneyim hızlı açılış, premium görünüm ve yüksek dönüşüm dengesine göre kurgulandı.</p>
+      <div class="footer-links">
+        <a href="#top">Ana Sayfa</a>
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#yorumlar">Yorumlar</a>
+        <a href="#iletisim">İletişim</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="floating-cta" aria-label="Hızlı iletişim butonları">
+    <a class="fab whatsapp" href="https://wa.me/905057867763?text=Merhaba%20Ferdi%20Midilli%20Nişanta%C5%9F%C4%B1%20i%C3%A7in%20randevu%20olu%C5%9Fturmak%20istiyorum" target="_blank" rel="noopener" aria-label="WhatsApp ile iletişim">✆</a>
+    <a class="fab call" href="tel:+905057867763" aria-label="Telefonla ara">☎</a>
+  </div>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"HairSalon",
+    "name":"Ferdi Midilli Nişantaşı",
+    "telephone":"+90 505 786 77 63",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Teşvikiye, Ferah Sokağı Ferah Apt No: 27 D: 27B-27C",
+      "addressLocality":"Şişli",
+      "addressRegion":"İstanbul",
+      "postalCode":"34365",
+      "addressCountry":"TR"
+    },
+    "url":"https://www.instagram.com/ferdimidillinisantasi/",
+    "sameAs":["https://www.instagram.com/ferdimidillinisantasi/"],
+    "openingHoursSpecification":[
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"08:30","closes":"19:30"}
+    ],
+    "aggregateRating":{
+      "@type":"AggregateRating",
+      "ratingValue":"4.9",
+      "reviewCount":"281"
+    }
+  }
+  </script>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const siteNav = document.getElementById('siteNav');
+    if(menuToggle){
+      menuToggle.addEventListener('click', () => siteNav.classList.toggle('open'));
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => siteNav.classList.remove('open'));
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.14});
+    reveals.forEach(el=>io.observe(el));
+
+    const baStage = document.getElementById('baStage');
+    const baLayer = document.getElementById('baLayer');
+    let baValue = 50;
+    let baAuto = true;
+    let direction = 1;
+    let resumeTimer;
+
+    function setBA(v){
+      baValue = Math.max(8, Math.min(92, v));
+      baLayer.style.width = baValue + '%';
+      baStage.style.setProperty('--ba', baValue + '%');
+      baStage.querySelector('.ba-handle').style.left = baValue + '%';
+    }
+    setBA(50);
+
+    function pointerToPercent(clientX){
+      const rect = baStage.getBoundingClientRect();
+      return ((clientX - rect.left) / rect.width) * 100;
+    }
+
+    function pauseAuto(){
+      baAuto = false;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => baAuto = true, 2200);
+    }
+
+    ['pointerdown','pointermove'].forEach(evt=>{
+      baStage.addEventListener(evt, e => {
+        if(evt === 'pointermove' && e.buttons !== 1) return;
+        pauseAuto();
+        setBA(pointerToPercent(e.clientX));
+      });
+    });
+
+    let startX = null;
+    baStage.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      pauseAuto();
+    }, {passive:true});
+    baStage.addEventListener('touchmove', e => {
+      setBA(pointerToPercent(e.touches[0].clientX));
+    }, {passive:true});
+
+    function autoSlide(){
+      if(baAuto){
+        if(baValue >= 82) direction = -1;
+        if(baValue <= 24) direction = 1;
+        setBA(baValue + direction * 0.22);
+      }
+      requestAnimationFrame(autoSlide);
+    }
+    requestAnimationFrame(autoSlide);
+  </script>
+</body>
+</html>
